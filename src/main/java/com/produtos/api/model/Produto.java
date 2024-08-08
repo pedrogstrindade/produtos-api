@@ -40,7 +40,7 @@ public class Produto {
     private int quantidade;
     
     @Column(name = "PRECO_PRODUTO", nullable = false)
-    private double preco;
+    private Double preco;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name = "DATA_FABRICACAO_PRODUTO")
