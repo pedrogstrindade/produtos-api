@@ -56,7 +56,7 @@ public class ProdutoService {
         
     }
 
-    public List<Produto> verificarProdutosEsgotados(ProdutoStatus status) {
+    public List<Produto> verificarProdutosEsgotados() {
         return produtoRepository.findByStatus(ProdutoStatus.ESGOTADO);
     }
 
