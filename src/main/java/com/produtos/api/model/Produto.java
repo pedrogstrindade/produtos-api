@@ -1,9 +1,11 @@
 package com.produtos.api.model;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.produtos.api.constants.ProdutoStatus;
+import com.produtos.api.dto.ProdutoDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -54,4 +56,20 @@ public class Produto {
     @Column(name = "STATUS_PRODUTO", nullable = false)
     private ProdutoStatus status;
 
+    public ProdutoDTO toDTO() {
+
+        ProdutoDTO dto = new ProdutoDTO();
+        
+        dto.setId(id);
+        dto.setNome(nome);
+        dto.setPreco(preco);
+        dto.setMarca(marca);
+        dto.setDescricao(descricao);
+        
+        long vencimentoDias = ChronoUnit.DAYS.between(LocalDate.now(), dataVencimento);
+        dto.setVencimentoDias(vencimentoDias);
+
+        return dto;
+        
+    }
 }
