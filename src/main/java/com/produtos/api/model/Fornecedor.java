@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity(name = "tb_fornecedores")
 public class Fornecedor {
-    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
