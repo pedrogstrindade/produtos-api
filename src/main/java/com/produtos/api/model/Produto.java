@@ -14,6 +14,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -55,6 +57,10 @@ public class Produto {
     @Enumerated(EnumType.STRING)
     @Column(name = "STATUS_PRODUTO", nullable = false)
     private ProdutoStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "FORNECEDOR_ID")
+    private Fornecedor fornecedor;
 
     public ProdutoDTO toDTO() {
 
