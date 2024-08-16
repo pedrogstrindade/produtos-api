@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,5 +44,17 @@ public class ForncedorController {
         }
 
         return ResponseEntity.ok().body(fornecedor);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarFornecedor(@PathVariable("id") Long id) {
+        Fornecedor fornecedor = fornecedorService.acharFornecedorPeloId(id);
+
+        if (Objects.isNull(fornecedor)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        fornecedorService.deletarFornecedor(id);
+        return ResponseEntity.noContent().build();
     }
 }
