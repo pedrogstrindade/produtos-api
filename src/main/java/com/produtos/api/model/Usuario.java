@@ -1,8 +1,10 @@
 package com.produtos.api.model;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import com.produtos.api.constants.UsuarioStatus;
+import com.produtos.api.dto.UsuarioDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,4 +46,16 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     @Column(name = "STATUS_USUARIO", nullable = false)
     private UsuarioStatus status;
+
+    public UsuarioDTO toDTO() {
+        UsuarioDTO dto = new UsuarioDTO();
+
+        dto.setId(id);
+        dto.setNome(nome);
+        dto.setEmail(email);
+        dto.setStatus(status);
+        dto.setIdade(ChronoUnit.YEARS.between(dataNascimento, LocalDate.now()));
+
+        return dto;
+    }
 }
