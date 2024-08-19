@@ -57,4 +57,9 @@ public class UsuarioController {
 
         return ResponseEntity.ok().body(usuario);
     }
+
+    @GetMapping
+    public ResponseEntity<Page<UsuarioDTO>> listarUsuariosLetraPorLetra(@RequestParam String nome, Pageable paginacao) {
+        return ResponseEntity.ok().body(usuarioService.listarUsuariosLetraPorLetra(nome, paginacao));
+    }
 }
