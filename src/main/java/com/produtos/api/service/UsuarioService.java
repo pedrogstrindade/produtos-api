@@ -60,6 +60,16 @@ public class UsuarioService {
         return null;
     }
 
+    public UsuarioDTO acharUsuarioPeloEmail(String email) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
+
+        if (usuarioOpt.isPresent()) {
+            return usuarioOpt.get().toDTO();
+        }
+
+        return null;
+    }
+    
     public UsuarioDTO acharUsuarioPeloNome(String nome) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findByNomeContains(nome);
 
