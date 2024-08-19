@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.produtos.api.constants.UsuarioStatus;
 import com.produtos.api.dto.UsuarioDTO;
 import com.produtos.api.model.Usuario;
 import com.produtos.api.service.UsuarioService;
@@ -61,5 +62,10 @@ public class UsuarioController {
     @GetMapping
     public ResponseEntity<Page<UsuarioDTO>> listarUsuariosLetraPorLetra(@RequestParam String nome, Pageable paginacao) {
         return ResponseEntity.ok().body(usuarioService.listarUsuariosLetraPorLetra(nome, paginacao));
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<UsuarioDTO>> listarUsuariosPorStatus(@RequestParam(name = "status", defaultValue = "ATIVO") UsuarioStatus status, Pageable paginacao) {
+        return ResponseEntity.ok().body(usuarioService.listarUsuariosPeloStatus(status, paginacao));
     }
 }
