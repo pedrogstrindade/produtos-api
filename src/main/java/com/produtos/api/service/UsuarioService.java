@@ -49,6 +49,16 @@ public class UsuarioService {
         return null;
     }
 
+    public UsuarioDTO acharUsuarioPeloNome(String nome) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByNomeContains(nome);
+
+        if (usuarioOpt.isPresent()) {
+            return usuarioOpt.get().toDTO();
+        }
+
+        return null;
+
+    }
     public Page<UsuarioDTO> listarUsuariosLetraPorLetra(String nome, Pageable paginacao) {
         Page<Usuario> usuarios = usuarioRepository.findByNomeLike(nome + "%", paginacao);
         List<UsuarioDTO> dto = usuarios.stream().map(Usuario::toDTO).collect(Collectors.toList());
