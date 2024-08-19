@@ -57,7 +57,7 @@ public class UsuarioService {
     }
 
     public Page<UsuarioDTO> listarUsuariosPeloStatus(UsuarioStatus status, Pageable paginacao) {
-        return usuarioRepository.findByStatus(status).map(Usuario::toDTO);
+        return usuarioRepository.findByStatus(status, paginacao).map(Usuario::toDTO);
     }
 
     public void deletarUsuario(Long id) {

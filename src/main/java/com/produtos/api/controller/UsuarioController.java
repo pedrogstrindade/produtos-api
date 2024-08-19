@@ -50,8 +50,8 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuario);
     }
 
-    @GetMapping("/cpf")
-    public ResponseEntity<UsuarioDTO> acharUsuarioPeloCpf(@RequestParam String cpf) {
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<UsuarioDTO> acharUsuarioPeloCpf(@PathVariable String cpf) {
         UsuarioDTO usuario = usuarioService.acharUsuarioPeloCpf(cpf);
 
         if (Objects.isNull(usuario)) {
@@ -61,12 +61,12 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuario);
     }
 
-    @GetMapping
-    public ResponseEntity<Page<UsuarioDTO>> listarUsuariosLetraPorLetra(@RequestParam String nome, Pageable paginacao) {
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity<Page<UsuarioDTO>> listarUsuariosLetraPorLetra(@PathVariable String nome, Pageable paginacao) {
         return ResponseEntity.ok().body(usuarioService.listarUsuariosLetraPorLetra(nome, paginacao));
     }
 
-    @GetMapping
+    @GetMapping("/status")
     public ResponseEntity<Page<UsuarioDTO>> listarUsuariosPorStatus(@RequestParam(name = "status", defaultValue = "ATIVO") UsuarioStatus status, Pageable paginacao) {
         return ResponseEntity.ok().body(usuarioService.listarUsuariosPeloStatus(status, paginacao));
     }

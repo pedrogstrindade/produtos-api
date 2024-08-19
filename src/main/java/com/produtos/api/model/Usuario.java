@@ -3,6 +3,7 @@ package com.produtos.api.model;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.produtos.api.constants.UsuarioStatus;
 import com.produtos.api.dto.UsuarioDTO;
 
@@ -34,6 +35,7 @@ public class Usuario {
     @Column(name = "CPF_USUARIO", nullable = false, unique = true)
     private String cpf;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name = "NASCIMENTO_USUARIO", nullable = false)
     private LocalDate dataNascimento;
 
