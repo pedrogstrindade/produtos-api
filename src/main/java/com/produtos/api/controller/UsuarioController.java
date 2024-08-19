@@ -39,6 +39,17 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuarioService.listarUsuarios(paginacao));
     }
 
+    @GetMapping("/nomec/{nome}")
+    public ResponseEntity<UsuarioDTO> acharUsuarioPeloNome(@PathVariable String nome) {
+        UsuarioDTO usuario = usuarioService.acharUsuarioPeloNome(nome);
+
+        if (Objects.isNull(usuario)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok().body(usuario);
+    }
+    
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioDTO> acharUsuarioPeloId(@PathVariable Long id) {
         UsuarioDTO usuario = usuarioService.acharUsuarioPeloId(id);

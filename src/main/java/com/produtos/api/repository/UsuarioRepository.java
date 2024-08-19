@@ -18,4 +18,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     public Optional<Usuario> findByCpf(String cpf);
 
     public Page<Usuario> findByStatus(UsuarioStatus status, Pageable paginacao);
+
+    public Optional<Usuario> findByNomeContains(String nome);
 }
