@@ -1,5 +1,6 @@
 package com.produtos.api.controller;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,17 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuario);
     }
 
+    @GetMapping("/nascimento/{dataNascimento}")
+    public ResponseEntity<UsuarioDTO> acharUsuarioPeloNascimento(@PathVariable LocalDate dataNascimento) {
+        UsuarioDTO usuario = usuarioService.acharUsuarioPeloNascimento(dataNascimento);
+
+        if (Objects.isNull(usuario)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok().body(usuario);
+    }
+    
     @GetMapping("/nome/{nome}")
     public ResponseEntity<Page<UsuarioDTO>> listarUsuariosLetraPorLetra(@PathVariable String nome, Pageable paginacao) {
         return ResponseEntity.ok().body(usuarioService.listarUsuariosLetraPorLetra(nome, paginacao));

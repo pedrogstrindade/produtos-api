@@ -1,5 +1,6 @@
 package com.produtos.api.repository;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -18,6 +19,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     public Optional<Usuario> findByCpf(String cpf);
 
     public Page<Usuario> findByStatus(UsuarioStatus status, Pageable paginacao);
-
+    
     public Optional<Usuario> findByNomeContains(String nome);
+
+    public Optional<Usuario> findByDataNascimento(LocalDate dataNascimento);
 }
