@@ -84,6 +84,17 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuario);
     }
     
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UsuarioDTO> acharUsuarioPeloEmail(@PathVariable String email) {
+        UsuarioDTO usuario = usuarioService.acharUsuarioPeloEmail(email);
+
+        if (Objects.isNull(usuario)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok().body(usuario);
+    }
+    
     @GetMapping("/nome/{nome}")
     public ResponseEntity<Page<UsuarioDTO>> listarUsuariosLetraPorLetra(@PathVariable String nome, Pageable paginacao) {
         return ResponseEntity.ok().body(usuarioService.listarUsuariosLetraPorLetra(nome, paginacao));
