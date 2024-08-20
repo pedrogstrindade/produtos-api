@@ -1,5 +1,6 @@
 package com.produtos.api.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -39,6 +40,16 @@ public class UsuarioService {
         return null;
     }
 
+    public UsuarioDTO acharUsuarioPeloNascimento(LocalDate dataNascimento) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByDataNascimento(dataNascimento);
+
+        if (usuarioOpt.isPresent()) {
+            return usuarioOpt.get().toDTO();
+        }
+
+        return null;
+    }
+    
     public UsuarioDTO acharUsuarioPeloCpf(String cpf) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findByCpf(cpf);
 
